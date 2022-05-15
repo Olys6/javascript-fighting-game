@@ -117,6 +117,36 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
   )
 }
 
+function determineWinner({ player, enemy, timerId }) {
+  clearTimeout(timerId)
+  document.querySelector('#displayTest').style.display = 'flex'
+  if (player.health == enemy.health) {
+    console.log('tie')
+    document.querySelector('#displayTest').innerHTML = 'Tie'
+  } else if (player.health > enemy.health) {
+    document.querySelector('#displayTest').innerHTML = 'Player 1 Wins'
+  } else if (player.health < enemy.health) {
+    document.querySelector('#displayTest').innerHTML = 'Player 2 Wins'
+  }
+}
+
+let timer = 60
+let timerId
+function decreaseTimer() {
+  
+  if(timer > 0) {
+    timerId = setTimeout(decreaseTimer, 1000)
+    timer--
+    document.querySelector('#timer').innerHTML = timer
+  }
+  if(timer === 0) {
+    determineWinner({ player, enemy, timerId })
+  }
+
+}
+
+decreaseTimer()
+
 function animate() {
   window.requestAnimationFrame(animate)
   c.fillStyle = 'black'
@@ -168,6 +198,11 @@ function animate() {
     document.querySelector('#playerHealth').style.width = player.health + '%'
     // console.log('ENEMY SUCCESSFUL HIIIIT!')
   }
+
+  // end game
+  if(enemy.health <= 0 || player.health <= 0) {
+    determineWinner({ player, enemy, timerId })
+  }
 }
 
 animate()
@@ -202,7 +237,7 @@ window.addEventListener('keydown', (event) => {
       enemy.velocity.y = -20
       break
     case 'ArrowDown':
-      enemy.isAttacking = true
+      enemy.attack()
 
       break
 

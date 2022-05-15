@@ -12,20 +12,27 @@
     <!-- red container div -->
     <div style="position: relative; display: inline-block;">
         <div style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px;">
+
+            <!-- player health -->
             <div style="position: relative; height: 30px; width: 100%; display: flex; justify-content: flex-end;">
-                <div style="background-color: yellow; height: 30px;"></div>
+                <div style="background-color: yellow; height: 30px; width: 100%;"></div>
                 <div id="playerHealth"
-                    style="position: absolute; background-color: blue; top: 0; right: 0; bottom: 0; width: 100%;">
+                    style="position: absolute; background: blue; top: 0; right: 0; bottom: 0; width: 100%;">
                 </div>
             </div>
-            <div style="background-color: red; width: 100px; height: 100px; flex-shrink: 0"></div>
 
+            <!-- TIMER -->
+            <div id="timer" style="background-color: red; width: 100px; height: 100px; flex-shrink: 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 60px;">10</div>
+
+            <!-- enemy health -->
             <div style="position: relative; height: 30px; width: 100%">
                 <div style="background-color: yellow; height: 30px;"></div>
                 <div id="enemyHealth"
                     style="position: absolute; background-color: blue; top: 0; right: 0; bottom: 0; left: 0"></div>
             </div>
+            <div></div>
         </div>
+        <div id="displayTest" style="position: absolute; color: white; display: none; align-items: center; justify-content: center; top: 0; right: 0; bottom: 0; left: 0">Tie</div>
         <canvas></canvas>
     </div>
     <script src="index.js"></script>
